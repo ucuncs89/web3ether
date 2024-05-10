@@ -23,7 +23,7 @@ export class Swap {
 
 		// Create contract instance
 		const uniswapV2Router = new Contract(
-			"ROUTER_ADDRESS",
+			ROUTER_ADDRESS,
 			uniswapV2RouterABI,
 			wallet
 		);
