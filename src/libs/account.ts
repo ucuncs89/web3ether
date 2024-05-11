@@ -23,7 +23,7 @@ export class Account {
 
 		try {
 			const balance = await this.provider.getBalance(wallet.address);
-			console.log(formatEther(balance));
+			console.log(`ETH: ${formatEther(balance)}`);
 		} catch (error) {
 			console.log(error);
 		}
