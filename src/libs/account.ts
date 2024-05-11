@@ -48,4 +48,28 @@ export class Account {
 			console.error("Terjadi kesalahan:", error);
 		}
 	}
+
+	async getTokenInformation(contractAddress: string) {
+		const abi = [
+			"function balanceOf(address) view returns (uint256)",
+			"function symbol() view returns (string)",
+			"function decimals() view returns (uint8)",
+		];
+
+		const contract = new Contract(contractAddress, abi, this.provider);
+
+		try {
+			const symbol = await contract.symbol();
+			const balance = await contract.balanceOf(WALLET_ADDRESS);
+			const decimals = await contract.decimals();
+			const formattedBalance = formatUnits(balance, decimals);
+			return {
+				symbol,
+				decimals,
+				formattedBalance,
+			};
+		} catch (error) {
+			console.error("Terjadi kesalahan:", error);
+		}
+	}
 }
